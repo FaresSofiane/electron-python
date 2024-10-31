@@ -19,7 +19,7 @@ Pour installer et configurer le projet :
 
 1. Clonez le dépôt :
     ```sh
-    git clone https://github.com/votre-utilisateur/votre-repo.git
+    git clone [https://github.com/votre-utilisateur/votre-repo.git](https://github.com/FaresSofiane/electron-python.git)
     cd votre-repo
     ```
 
