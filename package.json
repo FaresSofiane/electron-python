@@ -5,12 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && pyinstaller --distpath python-dist api.spec --clean --noconfirm  && vite build && electron-builder",
+    "build": "tsc && npm run python_init && npm run python_build",
     "build_nocheck": "vite build && electron-builder",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "build_python": "pyinstaller --distpath python-dist api.spec --clean",
-    "python_init:mac": "python3 -m venv .venv && source .venv/bin/activate && pip install requirements.txt"
+    "build_python": "npm run python_init && npm run python_build",
+    "python_init:unix": "python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt",
+    "python_init:win": "python -m venv .venv && .venv\\Scripts\\activate && pip install -r requirements.txt",
+    "python_build:unix": ". .venv/bin/activate && pyinstaller --distpath python-dist api.spec --clean --noconfirm",
+    "python_build:win": ".venv\\Scripts\\activate && pyinstaller --distpath python-dist api.spec --clean --noconfirm",
+    "python_init": "npm run python_init:unix || npm run python_init:win",
+    "python_build": "npm run python_build:unix || npm run python_build:win"
   },
   "dependencies": {
     "electron-settings": "^4.0.4",
