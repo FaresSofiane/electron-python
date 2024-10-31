@@ -8,3 +8,4 @@ dist-electron/preload.mjs
 /build
 /python-dist
 /release
+/dist-electron
