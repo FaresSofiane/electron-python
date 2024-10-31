@@ -5,3 +5,6 @@ dist-electron/.DS_Store
 /node_modules
 /dist-electron
 dist-electron/preload.mjs
+/build
+/python-dist
+/release

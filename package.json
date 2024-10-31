@@ -1,11 +1,11 @@
 {
   "name": "electron-python",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && npm run python_init && npm run python_build",
+    "build": "tsc && npm run python_init && npm run python_build && vite build && electron-builder",
     "build_nocheck": "vite build && electron-builder",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
