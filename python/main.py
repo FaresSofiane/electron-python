@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 import api_model
 import os
+import io
+import contextlib
 
 HOST = "127.0.0.1"
 PORT = 7777
@@ -27,6 +29,20 @@ def open_explorer(model: api_model.PathModel):
     os.startfile(model.path)
 
     return f"Opening {model.path}"
+
+@app.post("/interpretor/")
+def interpretor(model: api_model.PyIntModel):
+    try:
+        exec_globals = {}  # placeholder for capturing globals within exec
+
+        with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+            exec(model.value, {}, exec_globals)
+            output = buf.getvalue()
+
+        return {"result": output}
+    except Exception as e:
+        return {"error": str(e)}
+
 
 if __name__ == "__main__":
     import asyncio

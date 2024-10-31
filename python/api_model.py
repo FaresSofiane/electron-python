@@ -8,3 +8,6 @@ class PathModel(BaseModel):
 class HelloModel(BaseModel):
     name: str
     message: Optional[str]
+
+class PyIntModel(BaseModel):
+    value: str

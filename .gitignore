@@ -9,3 +9,4 @@ dist-electron/preload.mjs
 /python-dist
 /release
 /dist-electron
+*.pyc
