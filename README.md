@@ -19,8 +19,8 @@ Pour installer et configurer le projet :
 
 1. Clonez le dépôt :
     ```sh
-    git clone [https://github.com/votre-utilisateur/votre-repo.git](https://github.com/FaresSofiane/electron-python.git)
-    cd votre-repo
+    git clone https://github.com/FaresSofiane/electron-python.git
+    cd electron-python
     ```
 
 2. Installez les dépendances npm :
@@ -68,6 +68,17 @@ Les contributions sont les bienvenues ! Veuillez soumettre une pull request ou o
 3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`).
 4. Push vers la branche (`git push origin feature/AmazingFeature`).
 5. Ouvrez une pull request.
+
+## Crédits
+
+Ce projet utilise les technologies suivantes :
+
+- [Tailwind CSS](https://tailwindcss.com/) pour les styles.
+- [React](https://reactjs.org/) pour l'interface utilisateur.
+- [Electron](https://www.electronjs.org/) pour l'application de bureau.
+- [FastAPI](https://fastapi.tiangolo.com/) pour le développement de l'API backend en Python.
+
+---
 
 ## Licence
 
