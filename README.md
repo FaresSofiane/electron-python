@@ -6,7 +6,8 @@ Bienvenue sur le projet `electron-python` ! Ce projet est une application de bur
 
 Welcome to the `electron-python` project! This project is a desktop application created with Electron, React, and integrating Python scripts. We have provided this document in two languages to better serve our international community. Click on the badge corresponding to your preferred language below to read the full documentation.
 
-[![fr](https://img.shields.io/badge/Langue-Français-blue)](https://github.com/faressofiane/electron-python/README.fr.md) [![en](https://img.shields.io/badge/Language-English-red)](https://github.com/faressofiane/electron-python/README.en.md)
+[![fr](https://img.shields.io/badge/Langue-Français-blue)](https://github.com/faressofiane/electron-python/blob/main/README.fr.md) [![en](https://img.shields.io/badge/Language-English-red)](https://github.com/faressofiane/electron-python/blob/main/README.en.md)
+
 
 ## [FR] Résumé
 
