@@ -1,6 +1,5 @@
 # Electron-Python 🚀🐍
 
-![Electron-Python Logo](https://via.placeholder.com/150)
 
 ## Introduction 📖
 
