@@ -13,4 +13,7 @@ dist-electron/preload.mjs
 dist-electron/main.js
 dist-electron/preload.mjs
 python/__pycache__/api_model.cpython-313.pyc
-*.pyc
+/.venv
+/dist
+/venv
+/dist

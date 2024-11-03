@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       spacing: {
-        'screen-tb': 'calc(100vh - 1.75rem)',
+        'screen-tb': 'calc(100vh - 1.95rem)',
       },
     },
   },

@@ -18,6 +18,7 @@ function App() {
     const [inputValue, setInputValue] = useState('');
     const [stateValue, setStateValue] = useState('');
     const [language, setLanguage] = useState('en'); // État pour la langue
+    const [pingTime, setPingTime] = useState<number | null>(null); // État pour le temps de réponse
 
     const translations = {
         en: {
@@ -27,6 +28,8 @@ function App() {
             inputPlaceholder: 'Type something...',
             testBackendButton: 'Test the backend',
             fastAPIResponse: 'FastAPI response: ',
+            pingButton: 'Send Ping',
+            pingResponseTime: 'Ping response time: ',
         },
         fr: {
             title: 'Application Electron-Python',
@@ -35,6 +38,8 @@ function App() {
             inputPlaceholder: 'Tapez quelque chose...',
             testBackendButton: 'Tester le backend',
             fastAPIResponse: 'Réponse FastAPI: ',
+            pingButton: 'Envoyer Ping',
+            pingResponseTime: 'Temps de réponse du ping: ',
         }
     };
 
@@ -53,6 +58,21 @@ function App() {
             .catch(error => {
                 console.error("There was an error!", error);
             });
+    };
+
+    const handlePingClick = async () => {
+        const startTime = Date.now();
+        const ws = new WebSocket('ws://127.0.0.1:7777/ws');
+        ws.onopen = () => {
+            ws.send('ping');
+        };
+        ws.onmessage = (event) => {
+            if (event.data === 'pong') {
+                const endTime = Date.now();
+                setPingTime(endTime - startTime);
+                ws.close();
+            }
+        };
     };
 
     const openExternalLink = (url: string) => {
@@ -104,6 +124,10 @@ function App() {
                     {translations[language].testBackendButton}
                 </button>
                 <p className="text-white mt-4">{translations[language].fastAPIResponse}: {stateValue}</p>
+                <button onClick={handlePingClick}>{translations[language].pingButton}</button>
+            {pingTime !== null && (
+                <p>{translations[language].pingResponseTime} {pingTime} ms</p>
+            )}
             </div>
         </div>
     );

@@ -25,7 +25,8 @@ a = Analysis(
         'uvicorn',
         'os',
         'api_model',
-        'fastapi.middleware.cors'
+        'fastapi.middleware.cors',
+        'websockets'
     ],
     hookspath=[],
     runtime_hooks=[],

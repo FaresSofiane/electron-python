@@ -33,14 +33,29 @@ const isDev = !!VITE_DEV_SERVER_URL
 
 
 async function extractAndRunPython() {
-  const pyLibDir = path.join(process.resourcesPath,'..','lib','main')
+  const pyLibDir = path.join(process.resourcesPath, '..', 'lib', 'main');
+  const isWindows = process.platform === 'win32';
+  const isMac = process.platform === 'darwin';
 
   try {
     if (isDev) {
-      // In development, run the Python script directly
+      // En mode développement, exécutez le script Python directement
       const pyScript = path.join(__dirname, '..', 'python', 'main.py');
       console.log('Running Python script at (dev mode):', pyScript);
-      pythonProcess = spawn('python', [pyScript]);
+
+      let PythonExecutor = null
+
+      if (isWindows){
+
+      PythonExecutor = path.join(__dirname, '..','venv', 'Scripts', 'python.exe')
+
+      } else {
+
+        PythonExecutor = "python"
+
+      }
+
+      pythonProcess = spawn(PythonExecutor, [pyScript]);
 
       pythonProcess.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
@@ -50,17 +65,16 @@ async function extractAndRunPython() {
         console.error(`stderr: ${data}`);
       });
     } else {
-
-      const pyExecutable = path.join(pyLibDir, process.platform === 'win32' ? 'main.exe' : 'main');
+      const pyExecutable = path.join(pyLibDir, isWindows ? 'main.exe' : 'main');
 
       console.log('Running Python executable at:', pyExecutable);
 
-      // Set permissions to executable if necessary (only for non-Windows platforms)
-      if (process.platform !== 'win32') {
+      // Définir les permissions d'exécution si nécessaire (seulement pour les plateformes non-Windows)
+      if (!isWindows) {
         await fs.chmod(pyExecutable, '755');
       }
 
-      // Executing the Python executable
+      // Exécuter l'exécutable Python
       pythonProcess = execFile(pyExecutable, (error, stdout, stderr) => {
         if (error) {
           console.error(`Error: ${error.message}`);
@@ -78,6 +92,7 @@ async function extractAndRunPython() {
     console.error(`Error handling Python executable: ${err.message}`);
   }
 }
+
 function createWindow() {
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),

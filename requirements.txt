@@ -2,3 +2,4 @@ asyncio
 fastapi
 uvicorn
 pyinstaller
+websockets

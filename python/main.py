@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 import api_model
 import os
 import io
@@ -43,6 +43,20 @@ def interpretor(model: api_model.PyIntModel):
     except Exception as e:
         return {"error": str(e)}
 
+
+
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    try:
+        while True:
+            data = await websocket.receive_text()
+            if data == "ping":
+                await websocket.send_text("pong")
+            else:
+                await websocket.send_text("Invalid message")
+    except WebSocketDisconnect:
+        print("Client disconnected")
 
 if __name__ == "__main__":
     import asyncio
