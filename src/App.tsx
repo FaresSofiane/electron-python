@@ -64,7 +64,7 @@ function App() {
     };
 
     return (
-        <div className="bg-gradient-to-r from-gray-900 via-blue-900 to-black w-full h-screen flex flex-col items-center justify-center p-8 space-y-4">
+        <div className="bg-gradient-to-br from-transparent to-blue-500/20 bg-black h-screen-tb flex flex-col items-center justify-center p-8 space-y-4">
             <h1 className="text-4xl text-white mb-4">{translations[language].title}</h1>
             <p className="text-white mb-6 text-center">
                 {translations[language].description}

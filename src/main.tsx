@@ -2,11 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import TopBar from "./components/TopBar.tsx";
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
-      <App />
+      <TopBar/>
+      <div className={""} style={{ WebkitUserSelect: 'none' }}>
+          <App />
+      </div>
+
     </React.StrictMode>
 );
 

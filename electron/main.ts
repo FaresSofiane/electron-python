@@ -41,6 +41,14 @@ async function extractAndRunPython() {
       const pyScript = path.join(__dirname, '..', 'python', 'main.py');
       console.log('Running Python script at (dev mode):', pyScript);
       pythonProcess = spawn('python', [pyScript]);
+
+      pythonProcess.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+      });
+
+      pythonProcess.stderr.on('data', (data) => {
+        console.error(`stderr: ${data}`);
+      });
     } else {
 
       const pyExecutable = path.join(pyLibDir, process.platform === 'win32' ? 'main.exe' : 'main');
@@ -73,9 +81,16 @@ async function extractAndRunPython() {
 function createWindow() {
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
+    titleBarStyle:'hidden',
+    titleBarOverlay: {
+      color: '#2f3241',
+      symbolColor: '#74b1be',
+      height: 20
+    },
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
-    }
+    },
+    
   })
 
   // Test active push message to Renderer-process.
